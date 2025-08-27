@@ -5,13 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using marcheEx;
 
 
-namespace marcheEx
-{
-    internal class Program
-    {
-        List<Product> products = new List<Product>
+List<Product> products = new List<Product>
         {
             new Product { Location = 1, Producer = "Bornand", ProductName = "Pommes", Quantity = 20,Unit = "kg", PricePerUnit = 5.50 },
             new Product { Location = 1, Producer = "Bornand", ProductName = "Poires", Quantity = 16,Unit = "kg", PricePerUnit = 5.50 },
@@ -89,10 +86,14 @@ namespace marcheEx
             new Product { Location = 15, Producer = "Crizzi", ProductName = "Groseilles", Quantity = 12,Unit = "kg", PricePerUnit = 5.50 }
         };
 
-        foreach(Product in products)
-            {
-                
-            };
 
-    }
-}
+
+int totalPeach = products.Count(p => p.ProductName.Equals("Pêches"));
+
+Product mostWatermelon = products
+    .Where(p => p.ProductName.Equals("Pastèques"))
+    .OrderByDescending(p => p.Quantity)
+    .First();
+
+Console.WriteLine($"Il y a {totalPeach} vendeurs de pêches");
+Console.WriteLine($"C'est {mostWatermelon.Producer} qui a le plus de pastèques (stand {mostWatermelon.Location}, {mostWatermelon.Quantity} pièces)");
