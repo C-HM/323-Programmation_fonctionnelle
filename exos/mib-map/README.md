@@ -17,7 +17,7 @@ List<Product> products = new List<Product>
     //...
 }
 ```
-## Map
+## Échauffement : transformation "simples"
 
 ### 1. Chiffre d’affaire international anonyme
 En [transformant](../../supports/source/03-MapReduce.md#je-ne-veux-pas-transformer-je-veux-juste-sélectionner) la liste initiale en une liste contenant:
@@ -42,24 +42,69 @@ Seller,Product,CA
 Dum...t,Nuts,110
 ```
 
-## Reduce
+## Dashboard
 
-À partir du [résultat précédent](#1-chiffre-daffaire-international-anonyme), déterminer et afficher, **à l’aide [d’aggrégateurs](../../supports/source/03-MapReduce.md#accumulateur--aggrégateur--reduce)**:
+### Calcul
+Certaines valeurs pourraient faciliter le pilotage du marché.
 
-0. La quantité de groseilles disponibles sur le marché
-1. Le chiffre d’affaire possible **total** pour chaque marchand (tout produit confondu)
-2. Le plus grand, le plus petit et la moyenne de ces chiffres d’affaire
-3. Le marchand ayant le plus de noix à vendre
-4. Le marchand ayant le plus d’affinités avec ses produits
+Transformer la liste pour obtenir :
+- *Anonymisation renforcée* : Premier caractère + nombre de caractères + dernier caractère (ex: "Dumont" → "D5t")
+- *Catégorisation automatique* : Classer chaque produit selon sa quantité
+  - "Stock faible" (< 10)
+  - "Stock normal" (10-15) 
+  - "Stock élevé" (> 15)
+- *Valeur unitaire ajustée* : Prix majoré de 15% si stock faible, 5% si normal, prix normal si élevé
+- *Indicateur de rentabilité* : "Premium" si CA > 100, "Standard" sinon
 
-### Fonction d’affinité
-L’affinité est déterminée par la somme des lettres présentes chez le marchand et sa marchandise...
+### Export
+Pour une meilleure interopérabilité, exporter maintenant ces résultats au format json:
 
-```csharp
-int Affinity(string name, string product)
+``` json
+[
+	{
+		"producer":"",
+		...
+	}...
+	
+]
+```
+
+## Mesures de performances
+
+Le dashboard sera probablement vendu à des millions d’exemplaires, il faut peut-être l’optimiser.
+
+Pour en avoir le coeur net, il faut comparer les différentes options possibles (lambda, méthodes, ...). Voici un squelette pour calculer des performances:
+
+``` csharp
+using System.Diagnostics;
+
+static (long time, long memory) MesurePerf(Action action, int iterations = 1000)
 {
-    return name.GroupBy(letter => letter)
-        .Union(product.GroupBy(letter => letter))
-        .Sum(group=>group.Count());
+    // Forcer le garbage collection avant mesure
+    GC.Collect();
+    GC.WaitForPendingFinalizers();
+    GC.Collect();
+
+    var memoryBefore = GC.GetTotalMemory(false);
+    var stopwatch = Stopwatch.StartNew();
+
+    for (int i = 0; i < iterations; i++)
+    {
+        action();
+    }
+
+    stopwatch.Stop();
+    var memoryAfter = GC.GetTotalMemory(false);
+
+    return (stopwatch.ElapsedMilliseconds, memoireAfter - memoireBefore);
 }
 ```
+
+Mesurer et comparer les performances de différentes approche :
+- Select simple
+- Select avec méthodes externes
+- Select avec expressions lambda
+- Select avec création d'objets anonymes vs classes typées
+- ...
+
+Synthètiser les résultats dans un fichier .md avec les recommandations.

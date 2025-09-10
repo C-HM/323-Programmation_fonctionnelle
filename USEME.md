@@ -9,6 +9,13 @@ Ce document décrit comment utiliser un repo git dans le cadre d'un cours donné
 - Dans ce fork, il procède aux adaptations qui lui sont propres et crée donc certains commits.
 - Au démarrage du cours, chaque étudiant procède à un Fork du repos de l'enseignant.
 - IMPORTANT: Chaque étudiant crée un dossier nommé `personnel` dans son repo forké. Toute modification qu'il effectuera à partir de là (exercices, documents personnels, notes,...) devra se situer dans ce dossier.
+- Il est recommandé de faire la synchronisation entre le fork et sa source originale à la ligne de commande:
+  ```bash
+    git checkout main
+    git fetch upstream
+    git merge upstream/main
+    git push origin main
+  ```
 - À intervalle régulier, selon le rythme qu'il a décidé, le prof demande aux étudiants d'effectuer un 'sync fork', qui amènera dans le repo de chaque étudiant les modifications locales faites par le prof dans son repos à lui (ajustement de planning, corrigé d'exercice, document supplémentaire, consignes particulières,...)
 Cette opération se déroulera sans conflit pour autant que l'étudiant ait suivi la consigne de ne modifier que le contenu du dossier `personnel`.
 - À la fin du module, le prof effectue deux opérations

@@ -34,7 +34,7 @@ List<ComputerHardware> computerHardware = new List<ComputerHardware>() {
 
 Avec un simple menu console, proposer à l’utilisateur d’afficher :
 
-1. Les éléments n'étant pas des "centre de calculs"
+1. Les éléments n'étant pas un "central processing unit"
 2. Les éléments qui dépassent un prix de X (X à saisir par l’utilisateur)
 3. Les CPUs mauvais pour jouer (qui ont une horloge < 3ghz et moins que 4 coeurs).
 4. Les configs "potables" : Les GPUs qui ont au moins 32 coeurs et les CPUs avec au moins 8 coeurs.

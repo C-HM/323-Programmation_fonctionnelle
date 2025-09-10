@@ -11,15 +11,18 @@ Créer un nouveau dossier dans le dossier personnel pour stocker les solutions d
 string[] words = { "bonjour", "hello", "monde", "vert", "rouge", "bleu", "jaune" };
 ```
 
-#### Afficher les éléments qui
+#### Filtres possibles des mots
  - ne contiennent pas la lettre `x`
  - ont 4 caractères ou plus
  - ont autant de caractères que la moyenne du nombre de caractères de la liste
 
 
-> Si possible, utiliser des lambdas
+> Pour chaque filtre, assigner un lambda à une variable de type Func
 
-#### Afficher les résultats
+> Ajouter un menu (en console simple) pour choisir quel filtre appliquer (0..N)
+
+#### Affichage des résultats
+Ajouter dans le menu (ou demander à l’utilisateur une fois le filtre réalisé) les options suivantes d’affichage:
 
 - dans l’ordre inverse de celui naturellement calculé
 - triés a-z

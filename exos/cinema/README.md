@@ -14,7 +14,7 @@ new Movie() { Title = "Oldboy", Genre = "Thriller", Rating = 8.4, Year = 2003, L
 ```
 
 
-## Réaliser les filtres suivants:
+## Réaliser les filtres suivants (**un lambda assigné à une variable par filtre**):
 
 1. Filtrer les films qui ne sont pas du genre "Comédie" or "Drame".
 2. Identifier les films dont le rating est inférieur à 7.
