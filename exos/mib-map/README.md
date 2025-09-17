@@ -20,7 +20,7 @@ List<Product> products = new List<Product>
 ## Échauffement : transformation "simples"
 
 ### 1. Chiffre d’affaire international anonyme
-En [transformant](../../supports/source/03-MapReduce.md#je-ne-veux-pas-transformer-je-veux-juste-sélectionner) la liste initiale en une liste contenant:
+En [transformant](../../supports/source/03a-Map.md#je-ne-veux-pas-transformer-je-veux-juste-sélectionner) la liste initiale en une liste contenant:
 
 - Les 3 premières lettres du producteur suivies de "..." suivis de la dernière lettre du nom (Dumont --> Dum...t) [pseudo-anonymisation]
 - Le nom de l’aliment en anglais [dictionnaire disponible ici](./i18n.cs)
