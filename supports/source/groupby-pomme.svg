@@ -1,0 +1,170 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Titre -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">
+    GroupBy sur les couleurs des pommes
+  </text>
+  
+  <!-- Section "Données d'entrée" -->
+  <text x="50" y="70" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#666">
+    Données d'entrée (Liste de pommes):
+  </text>
+  
+  <!-- Pommes en entrée - mélangées -->
+  <!-- Pomme rouge 1 -->
+  <g transform="translate(70, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#e74c3c"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme verte 1 -->
+  <g transform="translate(120, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#27ae60"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme jaune 1 -->
+  <g transform="translate(170, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#f1c40f"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme rouge 2 -->
+  <g transform="translate(220, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#e74c3c"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme verte 2 -->
+  <g transform="translate(270, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#27ae60"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme rouge 3 -->
+  <g transform="translate(320, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#e74c3c"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme jaune 2 -->
+  <g transform="translate(370, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#f1c40f"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Pomme verte 3 -->
+  <g transform="translate(420, 90)">
+    <ellipse cx="0" cy="5" rx="15" ry="12" fill="#27ae60"/>
+    <rect x="-2" y="-8" width="4" height="6" fill="#8b4513"/>
+    <ellipse cx="3" cy="-5" rx="3" ry="1.5" fill="#228b22" transform="rotate(30)"/>
+  </g>
+  
+  <!-- Flèche vers le bas -->
+  <g transform="translate(400, 150)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+    <text x="20" y="25" font-family="Arial, sans-serif" font-size="14" fill="#666">GroupBy(couleur)</text>
+  </g>
+  
+  <!-- Définition de la flèche -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Section "Résultat groupé" -->
+  <text x="50" y="230" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#666">
+    Résultat après GroupBy:
+  </text>
+  
+  <!-- Groupe Rouge -->
+  <g>
+    <rect x="50" y="250" width="200" height="120" fill="#ffebee" stroke="#e74c3c" stroke-width="2" rx="10"/>
+    <text x="60" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#c62828">
+      🔴 Groupe: Rouge (3 pommes)
+    </text>
+    
+    <!-- Pommes rouges groupées -->
+    <g transform="translate(80, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#e74c3c"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+    <g transform="translate(130, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#e74c3c"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+    <g transform="translate(180, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#e74c3c"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+  </g>
+  
+  <!-- Groupe Vert -->
+  <g>
+    <rect x="300" y="250" width="200" height="120" fill="#e8f5e8" stroke="#27ae60" stroke-width="2" rx="10"/>
+    <text x="310" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e8449">
+      🟢 Groupe: Vert (3 pommes)
+    </text>
+    
+    <!-- Pommes vertes groupées -->
+    <g transform="translate(330, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#27ae60"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+    <g transform="translate(380, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#27ae60"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+    <g transform="translate(430, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#27ae60"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+  </g>
+  
+  <!-- Groupe Jaune -->
+  <g>
+    <rect x="550" y="250" width="200" height="120" fill="#fefbea" stroke="#f1c40f" stroke-width="2" rx="10"/>
+    <text x="560" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b7950b">
+      🟡 Groupe: Jaune (2 pommes)
+    </text>
+    
+    <!-- Pommes jaunes groupées -->
+    <g transform="translate(590, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#f1c40f"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+    <g transform="translate(640, 300)">
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#f1c40f"/>
+      <rect x="-1.5" y="-6" width="3" height="5" fill="#8b4513"/>
+      <ellipse cx="2.5" cy="-4" rx="2.5" ry="1" fill="#228b22" transform="rotate(30)"/>
+    </g>
+  </g>
+  
+  <!-- Code C# en bas -->
+  <g>
+    <rect x="50" y="400" width="700" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+    <text x="60" y="425" font-family="Consolas, monospace" font-size="13" fill="#495057">
+      var pommes = new[] { 
+    </text>
+    <text x="60" y="445" font-family="Consolas, monospace" font-size="13" fill="#495057">
+        new Pomme("Rouge"), new Pomme("Vert"), new Pomme("Jaune"), new Pomme("Rouge"), ...
+    </text>
+    <text x="60" y="465" font-family="Consolas, monospace" font-size="13" fill="#495057">
+      var groupes = pommes.GroupBy(p => p.Couleur).ToDictionary(g => g.Key, g => g.ToList());
+    </text>
+  </g>
+</svg>

@@ -1,8 +1,6 @@
 # Idéou pour la prochaine mouture
-- Traiter SelectMany et Concat
- - SelectMany : plusieurs champs (évite une posttransformation)
- - Concat : fait des OR dans l’ordre donné...
- 
-- Ajouter des activités qui font des mappings de fonctions (ex. KTD et PhotoSaver)
-    - par exemple Action a = doThat;
-  
+
+- Utiliser SelectMany dans un exercice
+- Rando:
+  - Imposer une lib de lecture
+  - Fournir la fonction de conversion d'un point GPS en coordonnées écran. Les maths qu'il faut faire semblent hors de leur portée

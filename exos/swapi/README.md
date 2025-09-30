@@ -6,6 +6,128 @@ Première étape: [là](https://swapi.dev/)
 
 Vous avez compris de quoi il s'agit ? Alors ... à vous jouer!
 
+![Screenshot](images/screenshot_20250923_141854.png)
+
+## Préparatifs de vol : API, Json et extensions
+Pour commencer avec SWAPI, quelques informations ou rappels.
+
+### API http
+Une API WEB est exposée via le protocole HTTP (qui lui même se base sur TCP...).
+Pour réaliser cela en C#, voici deux manières, une asynchrone et l’autre synchrone:
+
+``` csharp
+//Un client global pour éviter de surcharger l'OS et profiter d'un socket avec tout son contexte
+//pour toutes les requêtes (DNS,TCP,...)
+private HttpClient client = new HttpClient();
+
+string HttpGet(HttpClient client,string query)
+{
+    var json = HttpGetAsync(client,query).ConfigureAwait(false).GetAwaiter().GetResult();
+    return json;
+}
+async Task<string> HttpGetAsync(HttpClient client,string query)
+{
+    var response = await client.GetAsync(query.Contains("https") ? query : "https://swapi.dev/api/" + query);
+    response.EnsureSuccessStatusCode();
+    var json = await response.Content.ReadAsStringAsync();
+
+    return json;
+}
+
+```
+
+### JSON
+Le Json est un format texte structuré. On peut le ‘parser’ manuellement, utiliser un package nuget (NewtonSoft par exemple) toutefois depuis .NET6, c’est integré au framework.
+Voici comment convertir un Json vers une classe
+
+``` csharp
+//Import de la librairie
+using System.Text.Json;
+
+//Récupération du json
+var moviesJson = HttpGet(client,"films");
+
+//Conversion Json vers une classe définie
+var moviesResult = JsonSerializer.Deserialize<FilmResult>(moviesJson);
+
+//Récupération d'une sous-partie
+var movies = moviesResult.results;
+
+//Définition des classes
+class FilmResult
+{
+    public int count { get; set; }
+    public List<Film> results { get; set; }
+}
+
+class Film
+{
+    public string title { get; set; }
+    public List<string> characters { get; set; }
+}
+
+```
+
+> On voit donc qu’on peut choisir les attributs qu’on veut récupérer...
+
+> La nouveauté: ‘JsonSerializer.Deserialize<ClasseDestination>(JSON)’ 
+
+### Extensions
+
+Avant d’attaquer les exercices suivants, autant profiter de la [théorie sur les extensions](../../supports/source/05-Extension.md) pour se faciliter la tâche.
+
+#### Affichage "magique" ####
+
+Jusqu’à maintenant, pour afficher le contenu retourné par un filtre ou une transformation, il fallait passer par
+
+##### Actuel #####
+
+``` csharp
+result.ToList().ForEach(item=>Console.WriteLine(item));
+```
+
+ou bien
+
+``` csharp
+Console.WriteLine(String.Join(result.Select(item=>item.X)));
+```
+
+Bref c’est *fastidieux*...
+
+##### Objectif #####
+
+Idéalement, on voudrait juste écrire quelquechose comme:
+
+``` csharp
+result.Write();
+```
+
+###### Étapes ######
+
+1. Créer une classe publique statique nommée Extension (nom libre)
+2. Ajouter une méthode statique ne retournant rien et nommée ‘Write’
+3. Ajouter un argument de type IEnumerable idéalement compatible avec tout type
+
+##### Implémentation #####
+
+Voici une version possible:
+
+![Screenshot](images/screenshot_20250923_140333.png)
+
+> Ceci implique que les objets (classes) utilisées doivent avoir une méthode ‘toString’ pertinente, comme par exemple ci-dessous:
+
+![Screenshot](images/screenshot_20250923_141004.png)
+
+##### Avec SWAPI
+
+``` csharp
+movies.Write();
+```
+
+> Ça ne fonctionne pas ? Le ‘Write’ est dépendant de la méthode ‘ToString’ des objets traités... Il faut donc
+> probablement ‘overrider’ cette méthode dans la classe qu’on veut afficher...
+
+
 ## Planète 1
 
 En vous aidant **uniquement** de ce site et de votre documentation personnelle (en d'autre termes **sans aucun recours** à une IA), écrivez un programme qui donne les réponses aux questions suivantes:
@@ -25,7 +147,7 @@ En vous aidant **uniquement** de ce site et de votre documentation personnelle (
    - Films dans lesquels ils apparaissent (nom des films en minuscule séparés par des tirets)
    - Nom des planètes survolées (nom des planètes en minuscule séparées par des tirets)
 
-Vous n'allez pas implémenter toutes ces questions. Faites-en le plus possible en 45 minutes, en choisissant celles qui vous conviennent le mieux.
+Vous n'allez pas implémenter toutes ces questions. Faites-en le plus possible en 45 minutes, en choisissant celles qui vous semblent les plus pertinentes à pratiquer en vue d’un test futur...
 
 ## Planète 2
 
@@ -38,6 +160,10 @@ Créer un programme en mode console qui:
     - synopsis
     - durée
     - Acteurs
+	
+### Aide
+- [https://gist.github.com/Davidblkx/e12ab0bb2aff7fd8072632b396538560](https://gist.github.com/Davidblkx/e12ab0bb2aff7fd8072632b396538560)
+- [https://github.com/Turnerj/Quickenshtein](https://github.com/Turnerj/Quickenshtein)
 
 ## Planète 3
 
@@ -48,6 +174,10 @@ Au lieu de rendre un résultat sous forme de texte, générez un fichier `.html`
 Servez-vous de [ce fichier](./billboard.html) comme base de travail, injectez vos données au bons endroits. Pour les images, prenez [celle-cis](./sw-affiches.zip).
 
 Votre programme doit ouvrir le fichier résultant dans votre navigateur.
+
+### Aide
+- [Lancer un processus avec c#](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process?view=net-9.0)
+- Sur windows, la commande ‘open’ suivie d’une URL lance automatiquement un navigateur vers l’adresse...
 
 ## Planète 4
 
