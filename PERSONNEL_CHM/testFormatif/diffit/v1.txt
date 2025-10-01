@@ -1,0 +1,10 @@
+Ligne1: bonjour
+Ligne2: bonsoir
+Ligne3: Voici la ligne 3
+Ligne4: En voici une 4ème
+Ligne5: vide
+Ligne6: encore vide
+Ligne7:        avec une tabulation
+Ligne8: huit
+Ligne9: neuf
+Ligne10: la Dernière
