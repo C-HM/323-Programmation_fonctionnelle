@@ -26,10 +26,10 @@ if (!filesAreValid)
 
 /// CHARGEMENT DES DONNÉES
 // TODO: 01 Charger le contenu texte du fichier A (indice: File.ReadAllLines...)
-string[] linesA = { File.ReadAllLines("C:\\Users\\pc01zcg\\Documents\GitHub\\323-Programmation_fonctionnelle\\PERSONNEL_CHM\\testFormatif\\diffit\\v1.txt") };
+string[] linesA =  File.ReadAllLines(pathA) ;
 
 // TODO: 02 Charger le contenu texte du fichier B (indice: File.ReadAllLines...)
-string[] linesB = { File.ReadAllLines("C:\\Users\\pc01zcg\\Documents\\GitHub\\323-Programmation_fonctionnelle\\PERSONNEL_CHM\\testFormatif\\diffit\\v2.txt") };
+string[] linesB =  File.ReadAllLines(pathB) ;
 
 // TODO: 03 Vérifier que les fichier ont le même nombre de lignes
 
@@ -79,10 +79,16 @@ if (ignoreCase)
 }
 
 // TODO: 06 Créer et remplir une liste de LinesComparison à partir de linesA et linesB
-List<LinesComparison> comparisons = new();
+List<LinesComparison> comparisons = Enumerable.Range(0, linesA.Length)
+    .Select(i => new LinesComparison
+{
+        Number = i + 1,
+        ContentA = linesA[i],
+        ContentB = linesB[i]
+}).ToList();
 
 // TODO: 07 Sélectionner les lignes qui ont des différences
-var diffLines = new Liste<LinesComparison>();
+//var diffLines = comparisons.Where(c => ! c.AreEqual).ToList();
 
 // TODO: 08 Afficher le nombre de lignes identiques et différentes entre les 2 fichiers
 
