@@ -4,6 +4,8 @@
 //Descr. : Entraînement au test 323
 //         Cet outil permet de comparer 2 fichiers (avec le même nombre de lignes) ligne par ligne et indiquer les différences... Il permet aussi de faire du chiffrement
 
+using System;
+
 ///MENU
 Console.WriteLine("+--------------------------------+");
 Console.WriteLine("|DIFFIT : A very limited DIFFTOOL|");
@@ -88,9 +90,12 @@ List<LinesComparison> comparisons = Enumerable.Range(0, linesA.Length)
 }).ToList();
 
 // TODO: 07 Sélectionner les lignes qui ont des différences
-//var diffLines = comparisons.Where(c => ! c.AreEqual).ToList();
+var diffLines = comparisons.Where(diffLines => diffLines.ContentA != diffLines.ContentB).ToList();
 
 // TODO: 08 Afficher le nombre de lignes identiques et différentes entre les 2 fichiers
+int similarLines = comparisons.Where(similarLines => similarLines.ContentA == similarLines.ContentB).Count();
+Console.WriteLine($"Lignes identiques: {similarLines}\nLignes différentes: {diffLines.Count()}");
+
 
 // TODO: 09 Définir une fonction qui compte les différences (caractères différents) entre deux textes (sera utilisé pour les 2 lignes de A et B...)
 // Pour info/rappel, la fonction Zip (comme une fermeture éclair) permet d’associer deux listes.
